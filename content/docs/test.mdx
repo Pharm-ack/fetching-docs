@@ -1,0 +1,54 @@
+---
+title: Server-Side Fetching
+description: Server-Side Fetching
+---
+
+## Server-Side Data Fetching
+
+Thanks to Nextjs cause all pages in Nextjs is a server component by default unless you use "use client" directive which will turn the page into client component.
+
+So to fetch data on the server side, follow these steps:
+
+1. Create a new file in folder/working directories, e.g., `app/job/jobs.ts`
+2. Import the necessary dependencies:
+
+### Note:
+
+> So when it comes to this dependencies, it depends on the endpoint you are hitting. If the endpoint needs an access_token we will need to import a dependency from NextAuth in other for us to grap the access_token being saved in the cookies, then insert it in the header of the request we are making. Stll more Talk on this..
+
+3. Create an async function to fetch the data
+
+```ts
+"use server";
+
+export const fetchJobs = async () => {
+  try {
+    const response = await fetch(`${process.env.API_URL}/api/v1/jobs`,
+     ,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      console.error("Network response was not ok:", response);
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    console.log(Received data:, data);
+    return data.data;
+  } catch (error) {
+    console.error("Error in fetchWaitlistUsers:", error);
+    throw error;
+  }
+};
+
+```
+
+In the above code you will noticed I use couple of things there which is:
+
+1. "use server" directive
+2. process.env.API_URL

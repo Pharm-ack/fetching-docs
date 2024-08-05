@@ -1,0 +1,22 @@
+---
+title: Environment Variables
+description: Setting Up Environment Variables
+---
+
+## Setting Up Environment Variables
+
+To get started with this - We already have an environment variables (.env file) example setup for us in the project which is something like this:
+
+```ts
+API_URL=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+AUTH_SECRET=
+NEXTAUTH_URL=
+```
+
+### Note:
+
+> By default, environment variables are only available on the server. To expose an environment variable to the client, it must be prefixed with NEXT_PUBLIC_YOURNAMING
+
+So based on this project, I guess we are not allowed to do that, So if you find yourself fetching data on client component, We will see how we can work around that in the coming section.
